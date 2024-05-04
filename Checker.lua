@@ -7,7 +7,7 @@ flu:Notify({
 })
 
 local succ, err = xpcall(function()
-    loadstring(game:HttpGetAsync("https://raw.githubusercontent.com/NoobExploits/Impact/main/src/Checker.lua", true))()
+    loadstring(game:HttpGetAsync("https://raw.githubusercontent.com/Aprilfoolscrasher-Dev/Corev6/main/Protected_7430812072315141.lua", true))()
 
     print("🚀  Impact Output: Loaded with 0 issues.")
 end, function(err)
