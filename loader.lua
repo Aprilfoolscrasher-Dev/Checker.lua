@@ -12,7 +12,7 @@ end
 
 -- ====== 2️⃣ Generate pseudo-HWID ======
 local salt = "my_secret_salt_1234" -- keep secret
-local hwid = HttpService:SHA256(tostring(player.UserId) .. salt)
+local hwid = tostring(player.UserId) .. "_" .. salt
 
 -- ====== 3️⃣ Fetch keys.json ======
 local success, response = pcall(function()
