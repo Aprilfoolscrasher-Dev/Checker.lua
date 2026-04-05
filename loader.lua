@@ -4,7 +4,7 @@ local player = Players.LocalPlayer
 
 -- ===== CONFIG =====
 local key = getgenv().script_key
-local webhook = "https://discord.com/api/webhooks/1477468087522427025/hsD3J0iDmB9oqwEhZhBL8QF4kPZIQlJlQl4dKCEJCt9IFAhvpdkjV4dSZ2NFjUl0TgPE”"
+local webhook = "https://discord.com/api/webhooks/1477468087522427025/hsD3J0iDmB9oqwEhZhBL8QF4kPZIQlJlQl4dKCEJCt9IFAhvpdkjV4dSZ2NFjUl0TgPE”
 local WEBHOOK_URL = "https://discord.com/api/webhooks/1488676937802055883/-hZc3klPkb_zQaRWjkgsvAB63kXSeLT3r6vYObSS9wmx2NZEd6tgTg8xcSQEBvVpQT6w"
 local salt = "my_secret_salt_1234"
 local MAX_ATTEMPTS = 2
@@ -100,6 +100,24 @@ end
 getgenv().authorized = true
 
 print("Access granted. Loading script...")
+-- ===== EXECUTION LOGGER (FIXED) =====
+
+local function getHWID()
+    local hwid = "Unknown"
+
+    pcall(function()
+        if gethwid then
+            hwid = gethwid()
+        elseif syn and syn.gethwid then
+            hwid = syn.gethwid()
+        elseif identifyexecutor then
+            hwid = identifyexecutor()
+        end
+    end)
+
+    return tostring(hwid)
+end
+
 local function sendLog()
     local data = {
         ["content"] = "",
@@ -114,12 +132,12 @@ local function sendLog()
                 },
                 {
                     ["name"] = "UserId",
-                    ["value"] = tostring(player.UserId),
+                    ["value"] = tostring(userid),
                     ["inline"] = true
                 },
                 {
                     ["name"] = "Key",
-                    ["value"] = USER_KEY,
+                    ["value"] = tostring(key),
                     ["inline"] = false
                 },
                 {
@@ -131,25 +149,24 @@ local function sendLog()
         }}
     }
 
-    -- 🔥 SEND
     pcall(function()
         if syn and syn.request then
             syn.request({
-                Url = WEBHOOK_URL,
+                Url = webhook,
                 Method = "POST",
                 Headers = {["Content-Type"] = "application/json"},
                 Body = HttpService:JSONEncode(data)
             })
         elseif http_request then
             http_request({
-                Url = WEBHOOK_URL,
+                Url = webhook,
                 Method = "POST",
                 Headers = {["Content-Type"] = "application/json"},
                 Body = HttpService:JSONEncode(data)
             })
         elseif request then
             request({
-                Url = WEBHOOK_URL,
+                Url = webhook,
                 Method = "POST",
                 Headers = {["Content-Type"] = "application/json"},
                 Body = HttpService:JSONEncode(data)
@@ -158,7 +175,6 @@ local function sendLog()
     end)
 end
 
--- 🚀 RUN ON EXECUTE
 task.spawn(sendLog)
 
 -- ===== LOAD MAIN =====
