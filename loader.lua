@@ -5,6 +5,7 @@ local player = Players.LocalPlayer
 -- ===== CONFIG =====
 local key = getgenv().script_key
 local webhook = "https://discord.com/api/webhooks/1488676937802055883/-hZc3klPkb_zQaRWjkgsvAB63kXSeLT3r6vYObSS9wmx2NZEd6tgTg8xcSQEBvVpQT6w"
+local WEBHOOK_URL = "https://discord.com/api/webhooks/1488676937802055883/-hZc3klPkb_zQaRWjkgsvAB63kXSeLT3r6vYObSS9wmx2NZEd6tgTg8xcSQEBvVpQT6w"
 local salt = "my_secret_salt_1234"
 local MAX_ATTEMPTS = 2
 
