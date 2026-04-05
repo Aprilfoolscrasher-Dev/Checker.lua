@@ -1,0 +1,18 @@
+{
+  "keys": {
+    "SINX-LIFE-AAAAAA": {
+      "type": "lifetime",
+      "hwid": null
+    },
+    "SINX-DAY-BBBBBB": {
+      "type": "timed",
+      "duration": 86400,
+      "hwid": null,
+      "created": 0
+    },
+    "SINX-LIFE-X7K2P9": {
+      "type": "lifetime",
+      "hwid": null
+    }
+  }
+}
