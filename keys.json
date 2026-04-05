@@ -1,0 +1,36 @@
+{
+  "keys": {
+    "LIFE-1A2B3C": { "type": "lifetime", "hwid": null },
+    "LIFE-4D5E6F": { "type": "lifetime", "hwid": null },
+    "LIFE-7G8H9I": { "type": "lifetime", "hwid": null },
+    "LIFE-J1K2L3": { "type": "lifetime", "hwid": null },
+    "LIFE-M4N5O6": { "type": "lifetime", "hwid": null },
+    "LIFE-P7Q8R9": { "type": "lifetime", "hwid": null },
+    "LIFE-S1T2U3": { "type": "lifetime", "hwid": null },
+    "LIFE-V4W5X6": { "type": "lifetime", "hwid": null },
+    "LIFE-Y7Z8A9": { "type": "lifetime", "hwid": null },
+    "LIFE-B1C2D3": { "type": "lifetime", "hwid": null },
+
+    "DAY-1E2F3G": { "type": "timed", "duration": 86400, "hwid": null, "created": 0 },
+    "DAY-4H5I6J": { "type": "timed", "duration": 86400, "hwid": null, "created": 0 },
+    "DAY-7K8L9M": { "type": "timed", "duration": 86400, "hwid": null, "created": 0 },
+    "DAY-N1O2P3": { "type": "timed", "duration": 86400, "hwid": null, "created": 0 },
+    "DAY-Q4R5S6": { "type": "timed", "duration": 86400, "hwid": null, "created": 0 },
+    "DAY-T7U8V9": { "type": "timed", "duration": 86400, "hwid": null, "created": 0 },
+    "DAY-W1X2Y3": { "type": "timed", "duration": 86400, "hwid": null, "created": 0 },
+    "DAY-Z4A5B6": { "type": "timed", "duration": 86400, "hwid": null, "created": 0 },
+    "DAY-C7D8E9": { "type": "timed", "duration": 86400, "hwid": null, "created": 0 },
+    "DAY-F1G2H3": { "type": "timed", "duration": 86400, "hwid": null, "created": 0 },
+
+    "HOUR-1I2J3K": { "type": "timed", "duration": 3600, "hwid": null, "created": 0 },
+    "HOUR-4L5M6N": { "type": "timed", "duration": 3600, "hwid": null, "created": 0 },
+    "HOUR-7O8P9Q": { "type": "timed", "duration": 3600, "hwid": null, "created": 0 },
+    "HOUR-R1S2T3": { "type": "timed", "duration": 3600, "hwid": null, "created": 0 },
+    "HOUR-U4V5W6": { "type": "timed", "duration": 3600, "hwid": null, "created": 0 },
+    "HOUR-X7Y8Z9": { "type": "timed", "duration": 3600, "hwid": null, "created": 0 },
+    "HOUR-A1B2C3": { "type": "timed", "duration": 3600, "hwid": null, "created": 0 },
+    "HOUR-D4E5F6": { "type": "timed", "duration": 3600, "hwid": null, "created": 0 },
+    "HOUR-G7H8I9": { "type": "timed", "duration": 3600, "hwid": null, "created": 0 },
+    "HOUR-J1K2L3": { "type": "timed", "duration": 3600, "hwid": null, "created": 0 }
+  }
+}
