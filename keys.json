@@ -1,0 +1,36 @@
+{
+  "keys": {
+    "LIFE-8F3K2-X9PQL": { "type": "lifetime", "hwid": null, "userid": null, "banned": false, "attempts": 0 },
+    "LIFE-A7D2M-4ZQWX": { "type": "lifetime", "hwid": null, "userid": null, "banned": false, "attempts": 0 },
+    "LIFE-PL92X-K4T8R": { "type": "lifetime", "hwid": null, "userid": null, "banned": false, "attempts": 0 },
+    "LIFE-Q8W2N-7YH3S": { "type": "lifetime", "hwid": null, "userid": null, "banned": false, "attempts": 0 },
+    "LIFE-ZX91L-2MNBV": { "type": "lifetime", "hwid": null, "userid": null, "banned": false, "attempts": 0 },
+    "LIFE-TR45K-9QPLS": { "type": "lifetime", "hwid": null, "userid": null, "banned": false, "attempts": 0 },
+    "LIFE-8YH3V-N2KLM": { "type": "lifetime", "hwid": null, "userid": null, "banned": false, "attempts": 0 },
+    "LIFE-JK92Q-5XZPA": { "type": "lifetime", "hwid": null, "userid": null, "banned": false, "attempts": 0 },
+    "LIFE-MN4X8-2QWER": { "type": "lifetime", "hwid": null, "userid": null, "banned": false, "attempts": 0 },
+    "LIFE-PLK83-ZX9QM": { "type": "lifetime", "hwid": null, "userid": null, "banned": false, "attempts": 0 },
+
+    "DAY-1A2B3-C4D5E": { "type": "timed", "duration": 86400, "created": 0, "hwid": null, "userid": null, "banned": false, "attempts": 0 },
+    "DAY-F6G7H-I8J9K": { "type": "timed", "duration": 86400, "created": 0, "hwid": null, "userid": null, "banned": false, "attempts": 0 },
+    "DAY-L1M2N-O3P4Q": { "type": "timed", "duration": 86400, "created": 0, "hwid": null, "userid": null, "banned": false, "attempts": 0 },
+    "DAY-R5S6T-U7V8W": { "type": "timed", "duration": 86400, "created": 0, "hwid": null, "userid": null, "banned": false, "attempts": 0 },
+    "DAY-X9Y0Z-A1B2C": { "type": "timed", "duration": 86400, "created": 0, "hwid": null, "userid": null, "banned": false, "attempts": 0 },
+    "DAY-D3E4F-G5H6I": { "type": "timed", "duration": 86400, "created": 0, "hwid": null, "userid": null, "banned": false, "attempts": 0 },
+    "DAY-J7K8L-M9N0O": { "type": "timed", "duration": 86400, "created": 0, "hwid": null, "userid": null, "banned": false, "attempts": 0 },
+    "DAY-P1Q2R-S3T4U": { "type": "timed", "duration": 86400, "created": 0, "hwid": null, "userid": null, "banned": false, "attempts": 0 },
+    "DAY-V5W6X-Y7Z8A": { "type": "timed", "duration": 86400, "created": 0, "hwid": null, "userid": null, "banned": false, "attempts": 0 },
+    "DAY-B9C0D-E1F2G": { "type": "timed", "duration": 86400, "created": 0, "hwid": null, "userid": null, "banned": false, "attempts": 0 },
+
+    "HOUR-91A2B-3C4D5": { "type": "timed", "duration": 3600, "created": 0, "hwid": null, "userid": null, "banned": false, "attempts": 0 },
+    "HOUR-6E7F8-9G0H1": { "type": "timed", "duration": 3600, "created": 0, "hwid": null, "userid": null, "banned": false, "attempts": 0 },
+    "HOUR-I2J3K-4L5M6": { "type": "timed", "duration": 3600, "created": 0, "hwid": null, "userid": null, "banned": false, "attempts": 0 },
+    "HOUR-N7O8P-9Q0R1": { "type": "timed", "duration": 3600, "created": 0, "hwid": null, "userid": null, "banned": false, "attempts": 0 },
+    "HOUR-S2T3U-4V5W6": { "type": "timed", "duration": 3600, "created": 0, "hwid": null, "userid": null, "banned": false, "attempts": 0 },
+    "HOUR-X7Y8Z-9A0B1": { "type": "timed", "duration": 3600, "created": 0, "hwid": null, "userid": null, "banned": false, "attempts": 0 },
+    "HOUR-C2D3E-4F5G6": { "type": "timed", "duration": 3600, "created": 0, "hwid": null, "userid": null, "banned": false, "attempts": 0 },
+    "HOUR-H7I8J-9K0L1": { "type": "timed", "duration": 3600, "created": 0, "hwid": null, "userid": null, "banned": false, "attempts": 0 },
+    "HOUR-M2N3O-4P5Q6": { "type": "timed", "duration": 3600, "created": 0, "hwid": null, "userid": null, "banned": false, "attempts": 0 },
+    "HOUR-R7S8T-9U0V1": { "type": "timed", "duration": 3600, "created": 0, "hwid": null, "userid": null, "banned": false, "attempts": 0 }
+  }
+}
