@@ -1,6 +1,6 @@
 {
   "keys": {
-    "LIFE-8F3K2-X9PQL": { "type": "lifetime", "hwid": null, "userid": null, "banned": true, "attempts": 0 },
+    "LIFE-8F3K2-X9PQL": { "type": "lifetime", "hwid": null, "userid": null, "banned": false, "attempts": 0 },
     "LIFE-A7D2M-4ZQWX": { "type": "lifetime", "hwid": null, "userid": null, "banned": false, "attempts": 0 },
     "LIFE-PL92X-K4T8R": { "type": "lifetime", "hwid": null, "userid": null, "banned": false, "attempts": 0 },
     "LIFE-Q8W2N-7YH3S": { "type": "lifetime", "hwid": null, "userid": null, "banned": false, "attempts": 0 },
