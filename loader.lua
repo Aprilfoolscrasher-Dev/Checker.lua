@@ -1,17 +1,59 @@
 local HttpService = game:GetService("HttpService")
 local Players = game:GetService("Players")
+local MarketplaceService = game:GetService("MarketplaceService")
+
 local player = Players.LocalPlayer
 
 -- ===== CONFIG =====
-local key = getgenv().script_key
-local webhook = "https://discord.com/api/webhooks/1477468087522427025/hsD3J0iDmB9oqwEhZhBL8QF4kPZIQlJlQl4dKCEJCt9IFAhvpdkjV4dSZ2NFjUl0TgPE”
-local WEBHOOK_URL = "https://discord.com/api/webhooks/1488676937802055883/-hZc3klPkb_zQaRWjkgsvAB63kXSeLT3r6vYObSS9wmx2NZEd6tgTg8xcSQEBvVpQT6w"
+local key = getgenv().script_key or "NO_KEY"
+local webhook = "https://discord.com/api/webhooks/1488676937802055883/-hZc3klPkb_zQaRWjkgsvAB63kXSeLT3r6vYObSS9wmx2NZEd6tgTg8xcSQEBvVpQT6w"
 local salt = "my_secret_salt_1234"
 local MAX_ATTEMPTS = 2
 
 if not key or key == "" then
-    return warn("No script_key set")
+    warn("No script_key set")
+    return
 end
+
+-- ===== SESSION TRACKING =====
+getgenv().execCount = (getgenv().execCount or 0) + 1
+
+-- ===== GAME INFO =====
+local gameName = "Unknown"
+pcall(function()
+    gameName = MarketplaceService:GetProductInfo(game.PlaceId).Name
+end)
+
+local timeNow = os.date("%Y-%m-%d %H:%M:%S")
+
+-- ===== LOGGER =====
+local function sendLog(status, extra)
+    local msg = {
+        content = string.format(
+            "**SCRIPT LOG**\nUser: %s (%s)\nKey: %s\nGame: %s\nPlaceId: %s\nExec Count: %d\nStatus: %s\nTime: %s\n%s",
+            player.Name,
+            player.UserId,
+            key,
+            gameName,
+            game.PlaceId,
+            getgenv().execCount,
+            status,
+            timeNow,
+            extra or ""
+        )
+    }
+
+    pcall(function()
+        HttpService:PostAsync(
+            webhook,
+            HttpService:JSONEncode(msg),
+            Enum.HttpContentType.ApplicationJson
+        )
+    end)
+end
+
+-- ===== EXECUTION LOG =====
+sendLog("EXECUTED")
 
 -- ===== IDENTIFIERS =====
 local hwid = tostring(player.UserId) .. "_" .. salt
@@ -21,38 +63,34 @@ local userid = player.UserId
 local success, response = pcall(function()
     return game:HttpGet("https://raw.githubusercontent.com/Aprilfoolscrasher-Dev/Checker.lua/main/keys.json")
 end)
-if not success then return warn("Failed to fetch keys") end
+
+if not success then
+    sendLog("ERROR", "Failed to fetch keys.json")
+    return warn("Failed to fetch keys")
+end
 
 local data = HttpService:JSONDecode(response)
 local keyData = data.keys[key]
 
 if not keyData then
+    sendLog("INVALID KEY")
     return warn("Invalid key")
 end
 
 -- ===== BANNED CHECK =====
 if keyData.banned then
+    sendLog("BANNED KEY")
     return warn("Key revoked")
 end
 
--- ===== ATTEMPT TRACKING =====
+-- ===== ATTEMPTS =====
 keyData.attempts = keyData.attempts or 0
 
-local function logAndBlock(reason)
+local function autoBan(reason)
     keyData.attempts += 1
 
-    local msg = {
-        content = string.format(
-            "**AUTO-BAN TRIGGERED**\nReason: %s\nKey: %s\nUserId: %s\nHWID: %s\nAttempts: %d/%d",
-            reason, key, userid, hwid, keyData.attempts, MAX_ATTEMPTS
-        )
-    }
+    sendLog("AUTO-BAN", reason .. " | Attempts: " .. keyData.attempts)
 
-    pcall(function()
-        HttpService:PostAsync(webhook, HttpService:JSONEncode(msg), Enum.HttpContentType.ApplicationJson)
-    end)
-
-    -- Smart threshold
     if keyData.attempts >= MAX_ATTEMPTS then
         warn("Key automatically revoked")
         return
@@ -64,26 +102,17 @@ end
 
 -- ===== FIRST USE =====
 if not keyData.hwid and not keyData.userid then
-    local msg = {
-        content = string.format(
-            "**FIRST USE**\nKey: %s\nUserId: %s\nHWID: %s\nAssign these to lock.",
-            key, userid, hwid
-        )
-    }
-
-    pcall(function()
-        HttpService:PostAsync(webhook, HttpService:JSONEncode(msg), Enum.HttpContentType.ApplicationJson)
-    end)
+    sendLog("FIRST USE", "Assign HWID + UserId to lock key")
 end
 
 -- ===== USERID CHECK =====
 if keyData.userid and keyData.userid ~= userid then
-    return logAndBlock("UserId mismatch (key sharing)")
+    return autoBan("UserId mismatch (key sharing)")
 end
 
 -- ===== HWID CHECK =====
 if keyData.hwid and keyData.hwid ~= hwid then
-    return logAndBlock("HWID mismatch (key sharing)")
+    return autoBan("HWID mismatch (key sharing)")
 end
 
 -- ===== TIME CHECK =====
@@ -91,33 +120,17 @@ if keyData.type == "timed" then
     local created = keyData.created or 0
     local duration = keyData.duration or 0
 
-    if os.time() > created + duration then
+    if created ~= 0 and os.time() > created + duration then
+        sendLog("EXPIRED KEY")
         return warn("Key expired")
     end
 end
 
--- ===== AUTHORIZE =====
+-- ===== SUCCESS =====
 getgenv().authorized = true
+sendLog("ACCESS GRANTED")
 
 print("Access granted. Loading script...")
--- ===== EXECUTION LOGGER (FIXED) =====
-
-local function getHWID()
-    local hwid = "Unknown"
-
-    pcall(function()
-        if gethwid then
-            hwid = gethwid()
-        elseif syn and syn.gethwid then
-            hwid = syn.gethwid()
-        elseif identifyexecutor then
-            hwid = identifyexecutor()
-        end
-    end)
-
-    return tostring(hwid)
-end
-
 
 -- ===== LOAD MAIN =====
 local main = game:HttpGet("https://raw.githubusercontent.com/Aprilfoolscrasher-Dev/Checker.lua/main/main.lua")
